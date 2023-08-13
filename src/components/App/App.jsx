@@ -7,7 +7,7 @@ import GalleryList from '../GalleryList/GalleryList';
 
 function App() {
   let [galleryList, setGalleryList] = useState([]);
-
+  
 // On load, get gallery images
 useEffect(() => {
   getImages()
