@@ -9,6 +9,11 @@ function GalleryItem(props) {
     // console.log('props.item.path:', props.item.path)
 
     let [imageClick, setImageClick] = useState(false);
+    let [imageLikes, setImageLikes] = useState(0)
+
+    // how can I get the likes to update without refreshing the dom?
+    useEffect(() => {
+      }, [props.item.likes])
     
     const clickItem = () => {
         // console.log('props id is:', props.item.id);
@@ -20,6 +25,8 @@ function GalleryItem(props) {
         axios.put(`/gallery/like/${props.item.id}`, {likes: props.item.likes})
             .then((response) => {
                 console.log('response', response);
+                console.log('image likes', imageLikes)
+                setImageLikes(imageLikes)
                 getImages();
             })
             .catch((error) => {
@@ -30,12 +37,12 @@ function GalleryItem(props) {
 
     return (
         <>
-        <div className="myImage">
+        <div className="gallery-item">
         <div onClick={clickItem}>
          {imageClick == true ? <p>{props.item.description}</p> : <img src ={props.item.path}/>}  
         
         </div>
-        <button onClick={likeClick} type="button">Love it!</button>
+        <button onClick={likeClick} type="button">Love it! ❤️</button>
         <p>{props.item.likes} people love this</p>
         </div>
         </>
