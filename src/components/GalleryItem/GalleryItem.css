@@ -1,0 +1,4 @@
+.myImage {
+    display: flex;
+    flex-direction: row;
+}
